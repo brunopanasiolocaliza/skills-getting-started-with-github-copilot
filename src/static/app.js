@@ -41,6 +41,61 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Render activities in the new layout
+  function renderActivities(activities) {
+    const container = document.getElementById('activities');
+    container.innerHTML = '';
+
+    activities.forEach(activity => {
+      const card = document.createElement('div');
+      card.className = 'activity-card';
+
+      const title = document.createElement('h4');
+      title.className = 'activity-title';
+      title.textContent = activity.name;
+      card.appendChild(title);
+
+      const desc = document.createElement('p');
+      desc.className = 'activity-desc';
+      desc.textContent = activity.description || '';
+      card.appendChild(desc);
+
+      const capacity = document.createElement('p');
+      capacity.className = 'capacity';
+      capacity.innerHTML = `Capacity: <span class="current">${activity.participants.length}</span>/<span class="max">${activity.max_participants}</span>`;
+      card.appendChild(capacity);
+
+      const participantsWrap = document.createElement('div');
+      participantsWrap.className = 'participants';
+      const pHeader = document.createElement('h5');
+      pHeader.textContent = 'Participants';
+      participantsWrap.appendChild(pHeader);
+
+      const list = document.createElement('ul');
+      list.className = 'participants-list';
+
+      if (activity.participants && activity.participants.length) {
+        activity.participants.forEach(email => {
+          const li = document.createElement('li');
+          li.textContent = email;
+          list.appendChild(li);
+        });
+      } else {
+        const li = document.createElement('li');
+        li.className = 'empty';
+        li.textContent = 'No participants yet';
+        list.appendChild(li);
+      }
+
+      participantsWrap.appendChild(list);
+      card.appendChild(participantsWrap);
+
+      // Add signup form or buttons to `card` if needed
+
+      container.appendChild(card);
+    });
+  }
+
   // Handle form submission
   signupForm.addEventListener("submit", async (event) => {
     event.preventDefault();

@@ -39,6 +39,26 @@
         </form>
         <div id="message" class="hidden"></div>
       </section>
+
+      <div id="activities">
+        <!-- Example activity card template (each card produced by app.js should include this structure) -->
+        <div class="activity-card">
+          <h4 class="activity-title">Activity name</h4>
+          <p class="activity-desc">Short description</p>
+
+          <p class="capacity">Capacity: <span class="current">0</span>/<span class="max">20</span></p>
+
+          <div class="participants">
+            <h5>Participants</h5>
+            <ul class="participants-list">
+              <!-- populated by app.js -->
+              <li class="empty">No participants yet</li>
+            </ul>
+          </div>
+
+          <!-- ...signup form / buttons ... -->
+        </div>
+      </div>
     </main>
 
     <footer>
